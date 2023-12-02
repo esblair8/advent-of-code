@@ -1,4 +1,5 @@
 games = []
+
 with open("test2.txt", "r") as file:
     lines = file.read().split("\n")
     for line in lines:
@@ -12,6 +13,6 @@ with open("test2.txt", "r") as file:
                 count = int(count)
                 if count > count_dict[color]:
                     count_dict[color] = count
-        games.append(count_dict['red'] *
-                     count_dict['green'] * count_dict['blue'])
+        games.append(count_dict['red'] * count_dict['green'] * count_dict['blue'])
+
 print(sum(games))
