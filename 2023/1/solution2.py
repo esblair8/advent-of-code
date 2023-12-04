@@ -23,13 +23,14 @@ digit_string_dict = {
     '9': '9'
 }
 
+
 def regex_find_first_and_last_digit(str):
     regex_result = re.findall(
         rf'(?=(one|two|three|four|five|six|seven|eight|nine|1|2|3|4|5|6|7|8|9))', line)
     return (regex_result[0], regex_result[-1])
 
-with open("test.txt", "r") as file:
-    lines = file.read().split("\n")
+with open('test.txt', 'r') as file:
+    lines = file.read().split('\n')
     for line in lines:
         digits = regex_find_first_and_last_digit(line)
         first_digit = digit_string_dict.get(digits[0])
