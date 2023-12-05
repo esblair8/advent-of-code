@@ -12,6 +12,7 @@ with open('data/test2.txt', 'r') as file:
         numbers_you_have = numbers[1].strip().split()
         intersection = list(set(winning_nos) & set(numbers_you_have))
         winners = len(intersection)
-        final_total += winners if winners <= 2 else reduce(lambda x, _: x * 2, range(winners - 1), 1)
+        final_total += winners if winners <= 2 else reduce(
+            lambda x, _: x * 2, range(winners - 1), 1)
 
 print('final_total', final_total)
