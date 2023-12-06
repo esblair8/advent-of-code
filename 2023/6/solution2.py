@@ -1,7 +1,6 @@
 import re
 from functools import reduce
 
-
 def calculate(time, distance):
     distances = []
     for i in range(0, time + 1):
@@ -10,7 +9,6 @@ def calculate(time, distance):
         if distance_travelled > distance:
             distances.append(distance_travelled)
     return distances
-
 
 with open('data/test2.txt', 'r') as file:
     lines = file.read().replace(' ', '').split('\n')
