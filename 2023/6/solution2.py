@@ -1,10 +1,14 @@
 import re
 from functools import reduce
+import time
 
-def calculate(time, distance):
+start = time.time()
+print('start', start)
+
+def calculate(race_time, distance):
     distances = []
-    for i in range(0, time + 1):
-        time_left = time - i
+    for i in range(0, race_time + 1):
+        time_left = race_time - i
         distance_travelled = time_left * i
         if distance_travelled > distance:
             distances.append(distance_travelled)
@@ -12,5 +16,9 @@ def calculate(time, distance):
 
 with open('data/test2.txt', 'r') as file:
     lines = file.read().replace(' ', '').split('\n')
-    time, distance = [re.findall(rf'\d+', line) for line in lines]
-    print(len(calculate(int(time[0]), int(distance[0]))))
+    race_time, distance = [int(re.findall(rf'\d+', line)[0]) for line in lines]
+    print(len(calculate(race_time, distance)))
+
+end_time = time.time()
+print('end', end_time)
+print('time', end_time - start)

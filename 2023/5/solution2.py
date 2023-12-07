@@ -1,7 +1,14 @@
-almanac = open('data/test.txt').read().split('\n\n')
+# WIP
+
+import time
+
+start = time.time()
+print('start', start)
+
+almanac = open('data/test2.txt').read().split('\n\n')
 seeds = list(map(int, almanac[0].split()[1:]))
 maps = almanac[1:]
-part_two_seed = list(range(seeds[0], seeds[0] + seeds[1])) + list(range(seeds[2], seeds[2] + seeds[3]))
+
 min_seeds = []
 parsed_maps = []
 
@@ -10,19 +17,42 @@ for m in maps:
     for line in m.split('\n')[1:]:
         mp.append(list(map(int, line.split(' '))))
     parsed_maps.append(mp)
+print('parsed_maps')
 
 
-def map_seed(seeds, maps):
-    
+def map_seed(seed, maps):
     for destination, source, range_length in maps:
         if seed >= source and seed < source + range_length:
             return seed + destination - source
     return seed
 
 
-for s in part_two_seed:
-    for m in parsed_maps:
-        s = map_seed(s, m)
-    min_seeds.append(s)
+min_seed = float('inf')
 
-print(min(min_seeds))
+for i in range(0, len(seeds), 2):
+    print('i', i)
+    seed_range = range(seeds[i], seeds[i] + seeds[i + 1])
+    for s in seed_range:
+        if s > min_seed:
+            print('break 1')
+            break
+        for m in parsed_maps:
+            s = map_seed(s, m)
+            # check if s is less than min seed value already calculated
+            # filter list so that anytonh above s is removed
+            # continue to next seed
+            if s < min_seed:
+                print('s', s)
+                min_seed = s
+                print('break 2')
+                break
+        if s < min_seed:
+            print('s', s)
+            min_seed = s
+            print('break 3')
+            break
+
+print('min',min_seed)
+end = time.time()
+print('end', end)
+print('time', time.time() - start)
