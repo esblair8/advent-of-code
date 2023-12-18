@@ -53,7 +53,7 @@ def convert_card_to_list_of_ints(hand):
     return [card_map[card] for card in hand]
 
 
-with open('data/test2.txt', 'r') as file:
+with open('data/test.txt', 'r') as file:
     lines = file.read().split('\n')
     for line in lines:
         hand, bet = line.split(' ')
